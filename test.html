@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>Hello world</div>
+		<button id="getData">Get Data</button>
+		<div id="container"></div>
+		<div id="loadingView">Loading please wait</div>
+
+	</body>
+</html>
+<script>
+
+	$(document).ready(function(){
+		$("#loadingView").hide();
+		var root = 'https://jsonplaceholder.typicode.com';
+		//sample ajax call
+		$("#getData").click(function(){
+			$("#loadingView").show();
+			$.ajax({
+			  url: root + '/posts/1',
+			  method: 'GET'
+			}).then(function(data) {
+			  $("#container").text(JSON.stringify(data));
+			  $("#loadingView").hide();
+			});
+		});
+	});
+</script>
